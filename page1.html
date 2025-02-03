@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page1</title>
+  <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%; /* Ensure full height of viewport */
+        width: 100%; /* Ensure full width of viewport */
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('Notepage.png'); /* Replace with your image path */
+        background-size: cover; /* Makes sure the image fills the screen */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents image from repeating */
+        background-attachment: fixed; /* Keeps the background fixed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+        flex-direction: column;
+        position: relative; /* Allow absolute positioning of elements within the body */
+    }
+
+    .center-image {
+        position: absolute;
+        margin-bottom: 310px;
+        top: 12%;
+        left: 10%;
+        transform: translate(-50%, -50%); /* Center the image exactly */
+        z-index: 2; /* Ensure this image is on top of the background but under other content */
+        width: 320px; /* Set the desired size for the new image */
+    }
+    .center-image1 {
+        position: absolute;
+        margin-bottom: 310px;
+        top: 100%;
+        left: 10%;
+        transform: translate(-50%, -50%); /* Center the image exactly */
+        z-index: 2; /* Ensure this image is on top of the background but under other content */
+        width: 320px; /* Set the desired size for the new image */
+    }
+    .center-image2 {
+        position: absolute;
+        margin-bottom: 310px;
+        top: 12%;
+        left: 100%;
+        transform: translate(-50%, -50%); /* Center the image exactly */
+        z-index: 2; /* Ensure this image is on top of the background but under other content */
+        width: 320px; /* Set the desired size for the new image */
+    }
+     .center-image3 {
+        position: absolute;
+        margin-bottom: 310px;
+        top: 100%;
+        left: 100%;
+        transform: translate(-50%, -50%); /* Center the image exactly */
+        z-index: 2; /* Ensure this image is on top of the background but under other content */
+        width: 320px; /* Set the desired size for the new image */
+    }
+    .center-image4 {
+        position: absolute;
+        margin-bottom: 310px;
+        top: 5%;
+        left: 0%;
+        transform: translate(-50%, -50%); /* Center the image exactly */
+        z-index: 1; /* Ensure this image is on top of the background but under other content */
+        width: 600px; /* Set the desired size for the new image */
+        transform: rotate(45deg); /* Rotates the image 45 degrees */
+        transition: transform 0.5s; /* Optional: smooth transition */
+        
+    }
+
+    .faq {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        position: relative;
+        width: 400px;
+        cursor: pointer;
+        overflow: hidden;
+        margin: 50px; /* Space between arrows */
+        z-index: 3; /* Make sure the arrow text is above the centered image */
+        top: 20px;
+    }
+
+    .arrow-box {
+        width: 20px;  /* Increased width */
+        height: 80px;  /* Increased height */
+        background: linear-gradient(45deg, #ff7300, #ffae00);
+        border-radius: 40px;  /* Adjusted for better roundness */
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+        font-size: 24px;  /* Bigger font */
+        font-weight: bold;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 10px; /* Added left space for padding */
+        transition: left 0.5s ease, background 0.4s ease;
+    }
+
+    .static-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #3E2B2B;
+        white-space: nowrap;
+        margin-left: 70px;
+        transition: opacity 0.5s ease;
+        text-align: center;
+        display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    height: 100%; /* Ensure it takes full height to center vertically */
+    z-index: 3;
+    }
+
+    .expanded .arrow-box {
+        width: 300px;
+        left: 70px;
+        background: linear-gradient(45deg, #ffae00, #ff7300);
+    }
+
+    .expanded .static-text {
+        opacity: 0;
+    }
+    .nav-button {
+        position: absolute;
+        bottom: 20px;
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: brown;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        z-index: 2;
+    }
+    .nav-button:hover {
+        background-color: #45a049;
+    }
+
+    .next-button {
+        right: 20px;
+    }
+
+    .back-button {
+        left: 20px;
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Corrected image src in the HTML -->
+  <img src="Mag1.png" alt="Centered Image" class="center-image">
+  <img src="Mag2.png" alt="Centered Image" class="center-image1">
+  <img src="Mag4.png" alt="Centered Image" class="center-image2">
+  <img src="Mag3.png" alt="Centered Image" class="center-image3">
+  <img src="Mag5.png" alt="Centered Image" class="center-image4">
+    <br><br><div class="static-text"><center><b>RIDDLES</br></center></div>
+  <!-- Three instances of the big arrow -->
+  <div class="faq" onclick="toggleArrow(this, 1)">
+    <div class="arrow-box">▶</div>
+    <div class="static-text">
+      <center>
+        Long hair, thick cloth. <br>My teeth are sharp, <br>not receding.
+        <br><br> PRESS FOR THE ANSWER
+      </center>
+    </div>
+  </div>
+
+  <div class="faq" onclick="toggleArrow(this, 2)">
+    <div class="arrow-box">▶</div>
+    <div class="static-text">
+        <center>
+          One plate, worldwide income.<br><br>PRESS FOR THE ANSWER
+        </center>
+    </div>
+  </div>
+
+  <div class="faq" onclick="toggleArrow(this, 3)">
+    <div class="arrow-box">▶</div>
+    <div class="static-text">
+        <center>
+            In the cave was their home,<br> when eaten it <br>caused destruction.<br><br>PRESS FOR THE ANSWER
+        </center>
+    </div>
+  </div>
+        <br><br><br><br><br>   
+        
+        <button class="nav-button back-button" onclick="window.location.href='scrapbook.html';">Back</button>
+  <button class="nav-button next-button" onclick="window.location.href='page2.html';">Next</button>
+
+
+  <script>
+    function toggleArrow(container, faqNumber) {
+      const arrowBox = container.querySelector(".arrow-box");
+      const staticText = container.querySelector(".static-text");
+
+      container.classList.toggle("expanded");
+      if (container.classList.contains("expanded")) {
+        // Customize the text for each FAQ item
+        switch(faqNumber) {
+          case 1:
+            arrowBox.textContent = "SCISSORS"; 
+            break;
+          case 2:
+            arrowBox.textContent = "MOON";
+            break;
+          case 3:
+            arrowBox.textContent = "BAT"; 
+            break;
+          default:
+            arrowBox.textContent = "GUING"; 
+        }
+      } else {
+        arrowBox.textContent = "▶";
+      }
+    }
+  </script>
+</body>
+</html>

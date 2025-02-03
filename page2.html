@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Reveal with Back Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-image: url('Notepage.png'); /* Replace with your image path */
+            background-size: cover; /* Makes sure the image fills the screen */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents image from repeating */
+            background-attachment: fixed; /* Keeps the background fixed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            flex-direction: column;
+            position: relative; /* Allow absolute positioning of elements within the body */
+        }
+
+        h1 {
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .hidden-text {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 1s, height 1s;
+        }
+
+        .show-text {
+            opacity: 1;
+            height: auto;
+        }
+
+        .hidden-button {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #3E2B2B;
+            color: white;
+            border-radius: 5px;
+            margin: 10px 0;
+            width: 300px;  /* Fixed width for all buttons */
+            height: 60px;  /* Fixed height for all buttons */
+            text-align: center;  /* Ensures text is centered */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .back-button {
+            background-color: #f44336;
+        }
+
+        .back-button:hover {
+            background-color: #e53935;
+        }
+
+        .nav-button {
+            position: absolute;
+            bottom: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: brown;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            z-index: 2;
+            width: 90px; /* Match the width of other buttons */
+            height: 50px; /* Match the height of other buttons */
+            text-align: center;
+            
+        }
+
+        .nav-button:hover {
+            background-color: #45a049 ;
+        }
+
+        .next-button {
+            right: 20px;
+        }
+
+        .back-button {
+            left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>The Poems</h1>
+
+    <button id="revealButton1">The Negro Speaks of Rivers<br> By Langston Hughes</button>
+    <div id="textContainer1" class="hidden-text">
+        <h2>Here's The Poem!</h2>
+        <p>I’ve known rivers: I’ve known rivers ancient as the world and older than the flow of human blood in human veins.<br><br>My soul has grown deep like the rivers.<br><br>I bathed in the Euphrates when dawns were young.<br>I built my hut near the Congo and it lulled me to sleep.<br><br>I looked upon the Nile and raised the pyramids above it.<br>I heard the singing of the Mississippi when Abe Lincoln went down to New Orleans,<br> and I’ve seen its muddy bosom turn all golden in the sunset.<br><br>I’ve known rivers:<br>Ancient, dusky rivers.<br><br>My soul has grown deep like the rivers.</p>
+    </div>
+
+    <button id="revealButton2">The Road Not Taken<br> by Robert Frost</button>
+    <div id="textContainer2" class="hidden-text">
+        <h2>Here's The Poem!</h2>
+        <p>Two roads diverged in a yellow wood,<br> And sorry I could not travel both And be one traveler,<br> long I stood And looked down one as far as I could To where it bent in the undergrowth; <br><br> Then took the other, as just as fair, <br> And having perhaps the better claim, <br> Because it was grassy and wanted wear; Though as for that the passing there Had worn them really about the same, <br><br> And both that morning equally lay In leaves no step had trodden black. <br> Oh, I kept the first for another day! Yet knowing how way leads on to way, <br> I doubted if I should ever come back. I shall be telling this with a sigh Somewhere ages and ages hence: <br> Two roads diverged in a wood, and I I took the one less traveled by, And that has made all the difference.</p>
+    </div>
+
+    <button id="revealButton3">I Wandered Lonely as a Cloud<br> by William Wordsworth</button>
+    <div id="textContainer3" class="hidden-text">
+        <h2>Here's The Poem!</h2>
+        <p>I wandered lonely as a cloud That floats on high o'er vales and hills, When all at once I saw a crowd, A host, of golden daffodils; Beside the lake, beneath the trees, Fluttering and dancing in the breeze.<br><br>Continuous as the stars that shine And twinkle on the milky way, They stretched in never-ending line Along the margin of a bay: Ten thousand saw I at a glance, Tossing their heads in sprightly dance.<br><br>The waves beside them danced; but they Out-did the sparkling waves in glee: A poet could not but be gay, In such a jocund company: I gazed—and gazed—but little thought What wealth the show to me had brought:<br><br>For oft, when on my couch I lie In vacant or in pensive mood, They flash upon that inward eye Which is the bliss of solitude; And then my heart with pleasure fills, And dances with the daffodils.</p>
+    </div>
+
+    <button id="backButton" class="back-button hidden-button">Go Back</button>
+
+    <!-- Navigation Buttons -->
+    <button class="nav-button back-button" onclick="window.location.href='page1.html';">Back</button>
+    <button class="nav-button next-button" onclick="window.location.href='page3.html';">Next</button>
+
+    <script>
+        function revealText(buttonId, textContainerId) {
+            // Hide all buttons and text
+            document.querySelectorAll('button').forEach(button => button.classList.add('hidden-button'));
+            document.querySelectorAll('.hidden-text').forEach(text => text.classList.remove('show-text'));
+
+            // Reveal the specific text container for the clicked button
+            var textContainer = document.getElementById(textContainerId);
+            var button = document.getElementById(buttonId);
+            textContainer.classList.add('show-text');
+            button.classList.add('hidden-button'); // Hide the clicked button
+
+            // Show the 'Back' button
+            document.getElementById('backButton').classList.remove('hidden-button');
+        }
+
+        document.getElementById('revealButton1').addEventListener('click', function() {
+            revealText('revealButton1', 'textContainer1');
+        });
+
+        document.getElementById('revealButton2').addEventListener('click', function() {
+            revealText('revealButton2', 'textContainer2');
+        });
+
+        document.getElementById('revealButton3').addEventListener('click', function() {
+            revealText('revealButton3', 'textContainer3');
+        });
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            // Show all buttons and hide all text
+            document.querySelectorAll('button').forEach(button => button.classList.remove('hidden-button'));
+            document.querySelectorAll('.hidden-text').forEach(text => text.classList.remove('show-text'));
+
+            // Hide the 'Back' button
+            document.getElementById('backButton').classList.add('hidden-button');
+        });
+    </script>
+
+</body>
+</html>
