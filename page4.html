@@ -1,20 +1,185 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Buttons Reveal</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('Notepage.png'); /* Replace with your image path */
+        background-size: cover; /* Makes sure the image fills the screen */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents image from repeating */
+        background-attachment: fixed; /* Keeps the background fixed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+        flex-direction: column;
+        position: relative; /* Allow absolute positioning of elements within the body */
+    }
+        /* Centering the container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Styling the buttons */
+        .spinButton, #resetButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: brown;
+            color: white;
+            border-radius: 5px;
+            margin: 10px;
+            transition: transform 1s ease-in-out;
+            width: 200px; /* Ensures all buttons are the same size */
+        }
+
+        .spinButton:hover, #resetButton:hover {
+            background-color: #8b4513;
+        }
+
+        /* Hidden text */
+        .revealedText {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .message {
+            display: none;
+            font-size: 18px;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        /* Reset Button */
+        #resetButton {
+            display: none;
+            margin-top: 20px;
+            background-color: brown;
+        }
+
+        #resetButton:hover {
+            background-color: #8b4513;
+        }
+
+        /* Navigation Buttons */
+        .navButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: brown;
+            color: white;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 20px;
+        }
+
+        /* Positioning the navigation buttons */
+        #prevPage {
+            left: 20px;
+        }
+
+        #prevPage:hover {
+            background-color: #b52b38;
+        }
+
+        #nextPage {
+            right: 20px;
+        }
+
+        #nextPage:hover {
+            background-color: #cc7a00;
+        }
+
+    </style>
 </head>
-<body><center>
-  <dl>
-    <dt>
-      <dd ><b>Sir yung Myth baka bukas pa matapos</b></dd>
-    </dt>
+<body class="container">
+    <h1>MYTHS</h1>
     
-  </dl>
-  
-  
-</center>
-  
+    
+    <div class="container">
+        <!-- Each button has a data-message attribute to store the message -->
+        <button id="button1" class="spinButton" data-message="Pandora's Box: In Greek mythology, Pandora, the first woman on earth, was given a box by Zeus, but was instructed never to open it (Rose, 2010). Overcome by curiosity, Pandora finally opened the box, inadvertently releasing all manner of evils, diseases, and pain into the world. The only thing left inside was Hope, symbolizing humanity's solace in the face of adversity." onclick="spinAndReveal(this)">Pandora's Box</button>
+        <button id="button2" class="spinButton" data-message="King Midas and the Golden Touch: King Midas is granted a wish by Dionysus to have everything he touches turn to gold. Initially joyful, his happiness turns to horror when he realizes even his food and his beloved daughter transform to gold, teaching a lesson about greed and its negative consequences." onclick="spinAndReveal(this)">King Midas and the Golden Touch</button>
+        <button id="button3" class="spinButton" data-message="The Sword Excalibur: From Arthurian legends, Excalibur is the famed sword of King Arthur, gifted by the Lady of the Lake. The sword bestowed great power and victory in battles, symbolizing Arthur's rightful sovereignty over Britain. Upon Arthur's death, the sword was reportedly returned to the Lady of the Lake, disappearing forever." onclick="spinAndReveal(this)">The Sword Excalibur</button>
+
+        <h1 id="revealedText" class="revealedText">Her's the Story</h1>
+        <p id="message" class="message"></p>
+
+        <!-- Reset Button -->
+        <button id="resetButton" onclick="resetButtons()">Back</button>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button id="prevPage" class="navButton" onclick="goToPreviousPage()">Back</button>
+    <button id="nextPage" class="navButton" onclick="window.location.href='scrapbook.html';">Next</button>
+
+    <script>
+        function spinAndReveal(button) {
+            let buttons = document.querySelectorAll(".spinButton");
+            let textDisplay = document.getElementById("revealedText");
+            let message = document.getElementById("message");
+            let resetButton = document.getElementById("resetButton");
+
+            // Get message from data-message attribute
+            let customText = button.getAttribute("data-message");
+
+            // Make all buttons spin
+            buttons.forEach(btn => {
+                btn.style.transform = "rotate(360deg)";
+            });
+
+            setTimeout(() => {
+                // Hide all buttons
+                buttons.forEach(btn => btn.style.display = "none");
+
+                // Show the custom text and message
+                textDisplay.style.display = "block";
+                message.innerText = customText;
+                message.style.display = "block";
+
+                // Show the reset button
+                resetButton.style.display = "block";
+            }, 1000);
+        }
+
+        function resetButtons() {
+            let buttons = document.querySelectorAll(".spinButton");
+            let textDisplay = document.getElementById("revealedText");
+            let message = document.getElementById("message");
+            let resetButton = document.getElementById("resetButton");
+
+            // Show all buttons again
+            buttons.forEach(button => {
+                button.style.display = "block";
+                button.style.transform = "rotate(0deg)";
+            });
+
+            // Hide revealed text and messages
+            textDisplay.style.display = "none";
+            message.style.display = "none";
+
+            // Hide the reset button again
+            resetButton.style.display = "none";
+        }
+
+        function goToPreviousPage() {
+            window.history.back();
+        }
+    </script>
+
 </body>
-</html>
+  </html>
+  
